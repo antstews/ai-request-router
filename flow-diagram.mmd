@@ -1,0 +1,15 @@
+## 🧩 Flow Diagram – AI Request Router
+
+```mermaid
+flowchart TD
+    A[New Request Submitted] --> B[Check for Category Keywords]
+    B -->|Match Found| C[Route to Team]
+    B -->|No Match| D[Send to AI Classifier]
+    D --> E{Confidence High?}
+    E -->|Yes| C
+    E -->|No| F[Send to Ops Escalation Queue]
+    C --> G[Send Confirmation Email to User]
+    C --> H[Log to SharePoint / Excel]
+    F --> G
+    F --> H
+
