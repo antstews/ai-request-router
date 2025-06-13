@@ -1,15 +1,19 @@
 ## 🧩 Flow Diagram – AI Request Router
 
+<!-- This diagram illustrates the flow of how AI requests are routed through the system. 
+It shows the decision-making process, including keyword matching, AI classification, 
+and escalation paths, to ensure requests are handled appropriately. -->
+
 ```mermaid
 flowchart TD
     A[New Request Submitted] --> B[Check for Category Keywords]
-    B -->|Match Found| C[Route to Team]
-    B -->|No Match| D[Send to AI Classifier]
-    D --> E{Confidence High?}
-    E -->|Yes| C
-    E -->|No| F[Send to Ops Escalation Queue]
-    C --> G[Send Confirmation Email to User]
-    C --> H[Log to SharePoint / Excel]
+    B -- Match Found --> C[Route to Appropriate Team]
+    B -- No Match --> D[Send to AI Classifier]
+    D --> E{Is Confidence High?}
+    E -- Yes --> C
+    E -- No  --> F[Send to Ops Escalation Queue]
+    C --> G[Send Confirmation Email]
+    C --> H[Log Request in SharePoint/Excel]
     F --> G
     F --> H
 
